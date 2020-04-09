@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "servicos/servicoMensagemSessao.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,16 +17,16 @@ session_start();
 
     <form action="script.php" method="post">
         <?php
-            #operadores ternarios
-            $mesagemDeSucesso = isset($_SESSION['mensagem-de-sucesso']) ? $_SESSION['mensagem-de-sucesso'] : '';
-            if (!empty($mesagemDeSucesso))
+
+            $mensagemDeSucesso = obterMensagemSucesso();
+            if (!empty($mensagemDeSucesso))
             {
-                echo $mesagemDeSucesso ;
+                echo $mensagemDeSucesso ;
             }
-            $mesagemDeErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro'] : '';
-            if (!empty($mesagemDeErro))
+            $mensagemDeErro = obterMensagemErro();
+            if (!empty($mensagemDeErro))
             {
-                echo $mesagemDeErro ;
+                echo $mensagemDeErro ;
             }
         ?>
         <p> Seu nome: <input type="text" name="nome"/></p>
